@@ -1,23 +1,24 @@
 const buttons = document.querySelectorAll(".button")
 const display = document.querySelector(".display-result")
+const aux = display
 
 buttons.forEach((button)=> {
-    button.addEventListener("click", (item)=> {
+    button.addEventListener("click", ()=> {
         display.textContent += button.textContent
-        switch(item.currentTarget.textContent)
-        {
-            case "AC":
+        switch(button.textContent) {
+            case "C" :
                 clearDisplay()
                 break
-        }       
+            case "=":
+                display.textContent = getResult()
+                break
+        }
+
     })
 })
 
-display.addEventListener("change", ()=> {
-    console.log(display.textContent)
-})
+clearDisplay = () => display.textContent = ""
 
-
-function clearDisplay() {
-    display.textContent = ""
+function getResult() {
+    return eval(aux.textContent.replace("=",''))
 }
